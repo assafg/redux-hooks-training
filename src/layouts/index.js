@@ -22,9 +22,11 @@ function TemplateWrapper(props) {
     const NEXT = [13, 32, 39];
     const PREV = 37;
 
+    const data = props.data || { slide: { index: 1 } };
+
     const doNavigate = useCallback(
         ({ keyCode }) => {
-            const now = props.data.slide.index;
+            const now = data.slide.index;
 
             const slidesLength = props.slidesLength;
             if (now) {
@@ -42,7 +44,7 @@ function TemplateWrapper(props) {
                 }
             }
         },
-        [props.data.slide.index, NEXT, props.slidesLength]
+        [data.slide.index, NEXT, props.slidesLength]
     );
 
     const swipeLeft = () => {
@@ -66,7 +68,7 @@ function TemplateWrapper(props) {
         return () => {
             document.removeEventListener('keydown', doNavigate);
         };
-    }, [props.data.slide.index, doNavigate]);
+    }, [data.slide.index, doNavigate]);
 
     const { location, children, site } = props;
     return (

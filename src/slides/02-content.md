@@ -1,4 +1,4 @@
-### Why Redux Hooks?
+## Why Redux Hooks?
 
 When using React Hooks, it is more intuitive to also use Reac-Redux Hooks
 
@@ -19,7 +19,7 @@ ReactDOM.render(
 
 ---
 
-### useSelector()
+## The `useSelector()` hook
 
 ```typescript
 const result : any = useSelector(selector : Function, equalityFn? : Function)
@@ -46,13 +46,13 @@ export const CounterComponent = () => {
 
 ---
 
-### Practice
+## Practice
 
 Create a `"connected"` component with the `useSelector` hook.
 
 ---
 
-### useDispatch()
+## The `useDispatch()` hook
 
 ```typescript
 const dispatch = useDispatch();
@@ -117,7 +117,7 @@ export function Counter(props: ICounterProps) {
 
 ---
 
-### Passing `dispatch` to child components
+## Passing `dispatch` to child components
 
 ```javascript
 import React, { useCallback } from 'react';
@@ -141,4 +141,33 @@ export const CounterComponent = ({ value }) => {
 export const MyIncrementButton = React.memo(({ onIncrement }) => (
     <button onClick={onIncrement}>Increment counter</button>
 ));
+```
+
+---
+
+## The `useStore()` hook
+
+```javascript
+const store = useStore();
+```
+
+-   Used to gain access to the store from within a component
+-   Prefer the `useSelector` over this hook
+-   Used for less common use-cases where the store is required
+
+---
+
+## Example
+
+```javascript
+import React from 'react';
+import { useStore } from 'react-redux';
+
+export const CounterComponent = ({ value }) => {
+    const store = useStore();
+
+    // EXAMPLE ONLY! Do not do this in a real app.
+    // The component will not automatically update if the store state changes
+    return <div>{store.getState()}</div>;
+};
 ```

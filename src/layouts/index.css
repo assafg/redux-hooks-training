@@ -143,6 +143,8 @@ code {
     font-family: menlo, monospace;
     overflow: auto;
     max-height: 530px;
+    color: cornflowerblue;
+    font-style: italic;
 }
 
 a:hover {
